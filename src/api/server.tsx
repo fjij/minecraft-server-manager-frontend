@@ -62,6 +62,10 @@ async function serverOff(server: Server) {
   await request.post(`/server/${server.name}/off`);
 };
 
+async function backupServer(server: Server) {
+  await request.post(`/server/${server.name}/backup`);
+};
+
 const server = {
   getServers,
   getServer,
@@ -73,6 +77,7 @@ const server = {
   getServerStatus,
   serverOn,
   serverOff,
+  backupServer,
 };
 
 export default server;

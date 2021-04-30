@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { CreateServerOptions } from '../api/server';
+import { Preset } from '../api/preset';
+import { Backup } from '../api/backup';
 import { useHistory } from 'react-router-dom';
 import api from '../api';
 
 export default function CreateServerView() {
   const [name, setName] = useState<string>('');
   const [port, setPort] = useState<number>(25565);
-  const [isUsingPreset, setUsingPreset] = useState<boolean>(false);
   const [presetName, setPresetName] = useState<string>('');
-  const [isFromBackup, setFromBackup] = useState<boolean>(false);
   const [backupName, setBackupName] = useState<string>('');
 
+  const [presets, setPresets] = useState<Preset[] | null>(null);
+  const [backups, setBackups] = useState<Backup[] | null>(null);
+
   const history = useHistory();
+
+  useEffect(() => {
+    api.preset.getPresets().then(presets => setPresets(presets));
+    api.backup.getBackups().then(backups => setBackups(backups));
+  }, []);
 
   return (
     <div className='CreateServerView'>
       <form onSubmit={async e => {
         e.preventDefault();
         let options: CreateServerOptions = {};
-        if (isUsingPreset) {
+        if (presetName !== '') {
           options.preset = { name: presetName };
         }
-        if (isFromBackup) {
+        if (backupName !== '') {
           options.backup = { name: backupName };
         }
         try {
@@ -49,37 +57,35 @@ export default function CreateServerView() {
           onChange={e => setPort(parseInt(e.target.value))}
         />
         <br />
-        <label>Use Preset</label>
-        <input
-          type='checkbox'
-          checked={isUsingPreset}
-          onChange={e => setUsingPreset(e.target.checked)}
-          placeholder='some-backup'
-        />
+        <label>Use Preset:</label>
         <br />
-        <input
-          type='text'
-          disabled={!isUsingPreset}
+        <select
+          disabled={!presets}
           value={presetName}
           onChange={e => setPresetName(e.target.value)}
-          placeholder='vanilla'
-        />
+        >
+          <option value="">None</option>
+          {
+            presets && presets.map(preset => <option value={preset.name} key={preset.name}>
+              {preset.name}
+            </option>)
+          }
+        </select>
         <br />
-        <label>From Backup</label>
-        <input
-          type='checkbox'
-          checked={isFromBackup}
-          onChange={e => setFromBackup(e.target.checked)}
-          placeholder='some-backup'
-        />
+        <label>From Backup:</label>
         <br />
-        <input
-          type='text'
+        <select
+          disabled={!backups}
           value={backupName}
-          disabled={!isFromBackup}
           onChange={e => setBackupName(e.target.value)}
-          placeholder='some-backup'
-        />
+        >
+          <option value="">None</option>
+          {
+            backups && backups.map(backup => <option value={backup.name} key={backup.name}>
+              {backup.name}
+            </option>)
+          }
+        </select>
         <br />
         <input type='submit' value='Create'/>
       </form>

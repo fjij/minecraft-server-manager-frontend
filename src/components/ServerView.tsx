@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Server, ServerEnv } from '../api/server';
 import api from '../api';
 import AreYouSureButton from './AreYouSureButton';
@@ -13,8 +13,10 @@ export default function ServerView() {
   const [env, setEnv] = useState<ServerEnv | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [isInputDisabled, setInputDisabled] = useState<boolean>(false);
-  const [isDeleted, setDeleted] = useState<boolean>(false);
   const { name } = useParams<ServerParamTypes>();
+
+  const history = useHistory();
+
   useEffect(() => {
     api.server.getServer(name).then(async server => {
       const env = await api.server.getServerEnv(server);
@@ -27,8 +29,8 @@ export default function ServerView() {
 
   return (
     <div className='ServerView'>
-      { server && env && status && !isDeleted && <>
-        <h1>{ name }</h1>
+      { server && env && status && <>
+        <h1>Server: { name }</h1>
         <ul>
           <li>Port: { server.port }</li>
           <li>Created: { server.created }</li>
@@ -63,13 +65,16 @@ export default function ServerView() {
               }}>Turn off</button>
           }
         </div>
-        <AreYouSureButton onClick={async () => {
+        <AreYouSureButton disabled={isInputDisabled} onClick={async () => {
+          setInputDisabled(true);
+          await api.server.backupServer(server)
+          history.push('/backups');
+        }}>Backup</AreYouSureButton>
+        <AreYouSureButton disabled={isInputDisabled} onClick={async () => {
+          setInputDisabled(true);
           await api.server.deleteServer(server)
-          setDeleted(true);
+          history.push('/servers');
         }}>Delete</AreYouSureButton>
-      </> }
-      { isDeleted && <>
-        <p>Server deleted.</p>
       </> }
     </div>
   );

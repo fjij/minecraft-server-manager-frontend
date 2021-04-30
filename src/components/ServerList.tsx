@@ -1,4 +1,4 @@
-import {Server} from '../api/server';
+import { Server } from '../api/server';
 import React, { useEffect, useState } from 'react';
 import api from '../api';
 import ServerListItem from './ServerListItem';
@@ -11,6 +11,7 @@ export default function ServerList() {
 
   return (
     <div className='ServerList'>
+      <h1>Servers</h1>
       {servers && servers.map(s => <ServerListItem server={s} key={s.name}/>)}
     </div>
   );
