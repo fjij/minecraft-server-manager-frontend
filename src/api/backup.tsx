@@ -1,5 +1,5 @@
 export interface Backup {
-  name: string
+  name: string;
 }
 
 const backup = {
