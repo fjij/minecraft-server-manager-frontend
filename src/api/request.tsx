@@ -1,5 +1,5 @@
 import axios, {AxiosRequestConfig} from 'axios';
-const baseUrl = 'http://192.168.0.37:8000';
+const baseUrl = process.env.REACT_APP_API_URL;
 
 const request = {
   "get": (url: string, config: AxiosRequestConfig = {}) => {

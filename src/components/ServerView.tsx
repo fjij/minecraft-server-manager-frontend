@@ -25,7 +25,7 @@ export default function ServerView() {
       setEnv(env)
       setStatus(status)
     });
-  }, [])
+  }, [name])
 
   return (
     <div className='ServerView'>
@@ -48,33 +48,40 @@ export default function ServerView() {
         <div className='ServerStatus'>
           <ul>
             <li> Status: {status} </li>
+            <li>
+              {
+                status === 'none' ?
+                  <button disabled={isInputDisabled} onClick={async () => {
+                    setInputDisabled(true);
+                    await api.server.serverOn(server);
+                    setStatus(await api.server.getServerStatus(server));
+                    setInputDisabled(false);
+                  }}>Turn on</button> :
+                  <button disabled={isInputDisabled} onClick={async () => {
+                    setInputDisabled(true);
+                    await api.server.serverOff(server);
+                    setStatus(await api.server.getServerStatus(server));
+                    setInputDisabled(false);
+                  }}>Turn off</button>
+              }
+            </li>
           </ul>
-          {
-            status === 'none' ?
-              <button disabled={isInputDisabled} onClick={async () => {
-                setInputDisabled(true);
-                await api.server.serverOn(server);
-                setStatus(await api.server.getServerStatus(server));
-                setInputDisabled(false);
-              }}>Turn on</button> :
-              <button disabled={isInputDisabled} onClick={async () => {
-                setInputDisabled(true);
-                await api.server.serverOff(server);
-                setStatus(await api.server.getServerStatus(server));
-                setInputDisabled(false);
-              }}>Turn off</button>
-          }
         </div>
-        <AreYouSureButton disabled={isInputDisabled} onClick={async () => {
-          setInputDisabled(true);
-          await api.server.backupServer(server)
-          history.push('/backups');
-        }}>Backup</AreYouSureButton>
-        <AreYouSureButton disabled={isInputDisabled} onClick={async () => {
-          setInputDisabled(true);
-          await api.server.deleteServer(server)
-          history.push('/servers');
-        }}>Delete</AreYouSureButton>
+        <div className='ServerActions'>
+          <h2>Actions</h2>
+          <ul>
+            <li> <AreYouSureButton disabled={isInputDisabled} onClick={async () => {
+              setInputDisabled(true);
+              await api.server.backupServer(server)
+              history.push('/backups');
+            }}>Backup</AreYouSureButton> </li>
+            <li><AreYouSureButton disabled={isInputDisabled} onClick={async () => {
+              setInputDisabled(true);
+              await api.server.deleteServer(server)
+              history.push('/servers');
+            }}>Delete</AreYouSureButton></li>
+          </ul>
+        </div>
       </> }
     </div>
   );

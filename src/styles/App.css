@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
+body {
+  font-family: 'Oxygen';
+  background-color: #78c481;
+  margin: 0px;
+}
+
+.App {
+}
+
+.AppBody {
+  margin: 20px;
+}
+
+a {
+  color: #000000;
+}
+
+button {
+  border-width: 0px;
+  background-color: #3e5942;
+  color: white;
+  padding: 8px;
+  margin: 2px;
+  width: 100px;
+  border-radius: 4px;
+}
+
+button:disabled {
+  color: #888;
+}

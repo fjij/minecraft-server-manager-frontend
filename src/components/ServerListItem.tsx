@@ -8,10 +8,10 @@ interface ServerListItemProps {
 
 export default function ServerListItem({server}: ServerListItemProps) {
   return (
-    <div className='ServerListItem'>
+    <li className='ServerListItem'>
       <Link to={ '/server/' + server.name }>
         {server.name}
       </Link>
-    </div>
+    </li>
   );
 };

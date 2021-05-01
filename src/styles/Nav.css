@@ -1,0 +1,23 @@
+.Nav {
+  display: flex;
+  background-color: #3e5942;
+  padding: 10px;
+  width: 100%;
+}
+
+.NavLink {
+  padding: 10px;
+  font-family: 'Oxygen';
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .Nav {
+    display: inline-block;
+  }
+  .NavLink {
+    display: block;
+  }
+}

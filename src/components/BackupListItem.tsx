@@ -7,8 +7,8 @@ interface BackupListItemProps {
 
 export default function BackupListItem({backup}: BackupListItemProps) {
   return (
-    <div className='BackupListItem'>
-      <p>{backup.name}</p>
-    </div>
+    <li className='BackupListItem'>
+      {backup.name}
+    </li>
   );
 };

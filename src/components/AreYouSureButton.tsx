@@ -1,4 +1,5 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState } from 'react';
+import '../styles/AreYouSureButton.css';
 
 interface AreYouSureButtonProps {
   onClick?: () => {};
@@ -11,9 +12,8 @@ export default function AreYouSureButton({onClick, children, disabled}: AreYouSu
   return <div className="AreYouSureButton">
   { ready ?
     <>
-      <p>Are you sure?</p>
-      <button disabled={disabled} onClick={onClick}>{children}</button>
       <button disabled={disabled} onClick={() => setReady(false)}>Cancel</button>
+      <button disabled={disabled} onClick={onClick}>{children}</button>
     </> :
     <button disabled={disabled} onClick={() => setReady(true)}>{children}</button>
   }
