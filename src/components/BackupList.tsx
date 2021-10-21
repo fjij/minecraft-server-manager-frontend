@@ -10,7 +10,7 @@ export default function ServerList() {
   }, [])
 
   return (
-    <div className='BackupList'>
+    <div className='BackupList Page'>
       <h1>Backups</h1>
       <ul>
         {backups && backups.map(b => <BackupListItem backup={b} key={b.name}/>)}

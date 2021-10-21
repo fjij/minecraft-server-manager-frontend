@@ -29,7 +29,7 @@ export default function ServerView() {
   }, [name])
 
   return (
-    <div className='ServerView'>
+    <div className='ServerView Page'>
       { server && env && status && <>
         <h1>Server: { name }</h1>
         <ul>

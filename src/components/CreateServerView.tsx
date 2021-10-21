@@ -22,9 +22,13 @@ export default function CreateServerView() {
   }, []);
 
   return (
-    <div className='CreateServerView'>
+    <div className='CreateServerView Page'>
+      <h1>Create Server</h1>
       <form onSubmit={async e => {
         e.preventDefault();
+        if (!name) {
+          return;
+        }
         let options: CreateServerOptions = {};
         if (presetName !== '') {
           options.preset = { name: presetName };

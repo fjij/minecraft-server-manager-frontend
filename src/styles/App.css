@@ -2,60 +2,103 @@
 
 body {
   font-family: 'Oxygen';
-  background-color: #78c481;
+  background-color: #1d2021;
   margin: 0px;
 }
 
 .App {
+  display: flex;
+  flex-direction: column;
 }
 
 .AppBody {
-  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.Page {
+  margin-top: 30px;
+  min-width: 800px;
+  padding: 20px;
+  color: #fbf1c7;
+  background-color: #282828;
+}
+
+h1 {
+  margin-top: 0px;
 }
 
 a {
-  color: #000000;
+  color: #fbf1c7;
 }
 
 ul {
-  padding: 0px;
-  padding-left: 20px;
+  padding-left: 10px;
+  list-style: none;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 table {
-  border: 1px solid black;
+  border: 1px solid #fbf1c7;
   border-collapse: collapse;
 }
 
 th, td {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-tr:nth-child(even) {
-  background-color: #3e5942;
-  color: white;
+input[type=text],input[type=number],select {
+  border-width: 0px;
+  background-color: #504945;
+  color: #fbf1c7;
+  padding: 4px;
+  margin-top: 6px;
+  margin-right: 4px;
+  margin-bottom: 6px;
+  font-size: 1em;
 }
 
 input[type=submit],button {
   border-width: 0px;
-  background-color: #3e5942;
-  color: white;
-  padding: 8px;
-  margin: 2px;
+  background-color: #8f3f71;
+  color: #fbf1c7;
+  padding: 4px;
+  margin-top: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  height: 34px;
   width: 100px;
-  border-radius: 4px;
+  font-size: 1em;
+  transition: background-color 0.08s;
+}
+
+input[type=submit]:hover,button:hover {
+  background-color: #b16286;
 }
 
 input[type=submit].primary,button.primary {
-  background-color: #f2c224;
-  color: black;
+  background-color: #076678;
+}
+
+input[type=submit].primary:hover,button.primary:hover {
+  background-color: #458588;
 }
 
 input[type=submit].alert,button.alert {
-  background-color: #f22e24;
-  color: black;
+  background-color: #9d0006;
+}
+
+input[type=submit].alert:hover,button.alert:hover {
+  background-color: #cc241d;
 }
 
 button:disabled {
-  color: #888;
+  color: #a89984;
 }
