@@ -31,13 +31,13 @@ export default function ServerView() {
   return (
     <div className='ServerView Page'>
       { server && env && status && <>
-        <h1>Server: { name }</h1>
+        <h1>{ name }</h1>
+        <h4>Server</h4>
         <ul>
           <li>Port: { server.port }</li>
           <li>Created: { server.created }</li>
           <li>Volume: { server.volume }</li>
         </ul>
-        <h2>Environment</h2>
         <EnvView env={env} setEnv={(env) => {
           setEnv(env);
           api.server.putServerEnv(server, env);

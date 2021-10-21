@@ -1,10 +1,13 @@
-import { Server } from '../api/server';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../api';
+import { Server } from '../api/server';
 import ServerListItem from './ServerListItem';
 
 export default function ServerList() {
   const [servers, setServers] = useState<Server[] | null>(null);
+  const history = useHistory();
+
   useEffect(() => {
     api.server.getServers().then(servers => setServers(servers));
   }, [])
@@ -15,6 +18,9 @@ export default function ServerList() {
       <ul>
         {servers && servers.map(s => <ServerListItem server={s} key={s.name}/>)}
       </ul>
+      <button onClick={() => {
+        history.push('/create-server');
+      }}>New</button>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function CreateServerView() {
 
   return (
     <div className='CreateServerView Page'>
-      <h1>Create Server</h1>
+      <h1>New Server</h1>
       <form onSubmit={async e => {
         e.preventDefault();
         if (!name) {

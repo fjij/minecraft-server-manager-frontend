@@ -18,6 +18,7 @@ export default function EnvView({ env, setEnv }: EnvViewProps) {
 
   return (
     <div className='ServerEnv'>
+      <h2>Environment</h2>
       <form onSubmit={(e) => {
         if (newKey !== '' && newValue !== '') {
           const newEnv = { ...localEnv };
@@ -30,6 +31,12 @@ export default function EnvView({ env, setEnv }: EnvViewProps) {
       }}>
         <table>
           <tbody>
+            {
+              Object.keys(localEnv).length === 0 && !isEditable &&
+              <tr className='placeholder'>
+                <td>Nothing yet...</td>
+              </tr>
+            }
             {
               Object.keys(localEnv).map(key => <tr key={key}>
                 <td>{key}</td>

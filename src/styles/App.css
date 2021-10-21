@@ -26,6 +26,16 @@ body {
 
 h1 {
   margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.placeholder {
+  color: #a89984;
+}
+
+h4 {
+  margin-top: 0px;
+  color: #a89984;
 }
 
 a {
@@ -33,7 +43,7 @@ a {
 }
 
 ul {
-  padding-left: 10px;
+  padding-left: 0px;
   list-style: none;
 }
 
@@ -43,13 +53,11 @@ li {
 }
 
 table {
-  border: 1px solid #fbf1c7;
   border-collapse: collapse;
 }
 
 th, td {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
