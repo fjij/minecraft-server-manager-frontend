@@ -1,20 +1,19 @@
 import axios, {AxiosRequestConfig} from 'axios';
-import path from 'path';
 
-const baseUrl = process.env.REACT_APP_API_URL;
+const baseURL = process.env.REACT_APP_API_URL;
 
 const request = {
   "get": (url: string, config: AxiosRequestConfig = {}) => {
-    return axios.get(path.join(baseUrl??'', url), config);
+    return axios.get(url, { ...config, baseURL });
   },
   "post": (url: string, data: any = null, config: AxiosRequestConfig = {}) => {
-    return axios.post(path.join(baseUrl??'', url), data, config);
+    return axios.post(url, data, { ...config, baseURL });
   },
   "put": (url: string, data: any = null, config: AxiosRequestConfig = {}) => {
-    return axios.put(path.join(baseUrl??'', url), data, config);
+    return axios.put(url, data, { ...config, baseURL });
   },
   "delete": (url: string, config: AxiosRequestConfig = {}) => {
-    return axios.delete(path.join(baseUrl??'', url), config);
+    return axios.delete(url, { ...config, baseURL });
   }
 };
 
