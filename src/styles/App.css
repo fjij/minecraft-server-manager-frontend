@@ -17,7 +17,26 @@ a {
   color: #000000;
 }
 
-button {
+ul {
+  padding: 0px;
+  padding-left: 20px;
+}
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #3e5942;
+  color: white;
+}
+
+input[type=submit],button {
   border-width: 0px;
   background-color: #3e5942;
   color: white;
@@ -25,6 +44,16 @@ button {
   margin: 2px;
   width: 100px;
   border-radius: 4px;
+}
+
+input[type=submit].primary,button.primary {
+  background-color: #f2c224;
+  color: black;
+}
+
+input[type=submit].alert,button.alert {
+  background-color: #f22e24;
+  color: black;
 }
 
 button:disabled {

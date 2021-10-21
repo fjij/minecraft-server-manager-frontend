@@ -46,7 +46,7 @@ async function getServerEnv(server: Server): Promise<ServerEnv> {
 };
 
 async function putServerEnv(server: Server, env: ServerEnv) {
-  await request.put(`/server/${server.name}/env`, { data: { env }});
+  await request.put(`/server/${server.name}/env`, { env });
 };
 
 async function getServerStatus(server: Server): Promise<string> {

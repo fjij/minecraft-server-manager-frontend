@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Server, ServerEnv } from '../api/server';
 import api from '../api';
 import AreYouSureButton from './AreYouSureButton';
+import EnvView from './EnvView';
 
 interface ServerParamTypes {
   name: string;
@@ -37,13 +38,10 @@ export default function ServerView() {
           <li>Volume: { server.volume }</li>
         </ul>
         <h2>Environment</h2>
-        <div className='ServerEnv'>
-          <ul>
-            { Object.keys(env).map(key => <li key={key}>
-              {key}: {env[key]}
-            </li>) }
-          </ul>
-        </div>
+        <EnvView env={env} setEnv={(env) => {
+          setEnv(env);
+          api.server.putServerEnv(server, env);
+        }} />
         <h2>Container Status</h2>
         <div className='ServerStatus'>
           <ul>
